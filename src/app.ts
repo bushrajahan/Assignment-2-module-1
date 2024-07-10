@@ -1,5 +1,7 @@
 import express, { Application, Response, Request } from 'express';
 import cors from 'cors';
+import { studentRoutes } from './app/modular/student.router';
+
 const app: Application = express();
 // const port = 3000
 
@@ -7,9 +9,15 @@ const app: Application = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req: Request, res: Response) => {
-  // const a = 30;
-  res.send('Hello World!');
-});
+//call routes from here
+
+app.use('/api/v1/students', studentRoutes);
+
+const getAController = (req: Request, res: Response) => {
+  // const a= 30;
+  res.send('ki');
+};
+
+app.get('/', getAController);
 
 export default app;
